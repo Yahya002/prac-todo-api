@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Owner extends Model
+class ToDo extends Model
 {
     use HasFactory;
 
-    public function todo(){
-        return $this->hasMany(ToDo::class);
+    public function owner(){
+        return $this->belongsTo(Owner::class);
     }
 }

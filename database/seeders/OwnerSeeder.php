@@ -16,6 +16,17 @@ class OwnerSeeder extends Seeder
         //
         Owner::factory()
             ->count(50)
+            ->hasToDo(5)
+            ->create();
+
+        Owner::factory()
+            ->count(20)
+            ->hasToDo(8)
+            ->create();
+        
+        Owner::factory()
+            ->count(15)
+            ->hasToDo(12)
             ->create();
     }
 }

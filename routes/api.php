@@ -13,10 +13,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::get('/user/{id}', function (int $id) {
+//     return new OwnerResource(Owner::findOrFail($id));
+// });
+
 Route::get('user/{user_name}', function(string $userName){
     return new OwnerResource(Owner::where('user_name', $userName)->first());
 });
 
-Route::get('/user/{id}', function (int $id) {
-    return new OwnerResource(Owner::findOrFail($id));
-});
+// Route::get('user/{user_name}/tasks', function(string $userName){
+//     return new OwnerResource(Owner::where('user_name', $userName)->first()->todo->all());
+// });
