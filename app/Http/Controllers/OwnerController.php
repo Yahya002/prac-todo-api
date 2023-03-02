@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Owner;
+use App\Models\ToDo;
 
 class OwnerController extends Controller
 {
@@ -20,7 +22,12 @@ class OwnerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Owner::findOrFail($id);
+    }
+
+    public function showToDo(string $id)
+    {
+        return Owner::findOrFail($id)->todo;
     }
 
     /**
