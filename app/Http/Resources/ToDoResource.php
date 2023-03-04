@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class OwnerResource extends JsonResource
+class ToDoResource extends JsonResource
 {
     /**
      * The "data" wrapper that should be applied.
@@ -13,7 +13,6 @@ class OwnerResource extends JsonResource
      * @var string|null
      */
     public static $wrap = NULL;
-
 
     /**
      * Transform the resource into an array.
@@ -24,9 +23,10 @@ class OwnerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'userName' => $this->user_name,
-            'email' => $this->email,
+            'ownerId' => $this->owner_id,
+            'taskText' => $this->task_text,
+            'dueAt' => $this->due_at,
+            'completed' => $this->completed,
             // 'createdAt' => $this->created_at,
             // 'updatedA' => $this->updated_at,
         ];

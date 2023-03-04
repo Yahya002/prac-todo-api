@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\ToDoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,5 +14,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('user/{id}', [OwnerController::class, 'show']);
-Route::get('user/{id}/tasks', [OwnerController::class, 'showToDo']);
+Route::get('users/{userId}', [OwnerController::class, 'show']);
+Route::get('users/{userId}/tasks/{taskId?}', [OwnerController::class, 'showToDo']);
