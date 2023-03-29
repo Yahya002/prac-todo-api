@@ -4,8 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ToDoResource;
 
-class OwnerResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * The "data" wrapper that should be applied.
@@ -27,8 +28,7 @@ class OwnerResource extends JsonResource
             'name' => $this->name,
             'userName' => $this->user_name,
             'email' => $this->email,
-            // 'createdAt' => $this->created_at,
-            // 'updatedA' => $this->updated_at,
+            'toDos' => ToDoResource::collection($this->whenLoaded('todo')),
         ];
     }
 }

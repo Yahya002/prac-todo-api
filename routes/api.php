@@ -14,5 +14,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users/{userId}', [OwnerController::class, 'show']);
-Route::get('users/{userId}/tasks/{taskId?}', [OwnerController::class, 'showToDo']);
+Route::middleware('auth:sanctum')->get('user/{userId}', [UserController::class, 'show']);
+Route::middleware('auth:sanctum')->get('user/{userId}/tasks', [UserController::class, 'showList']);

@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Owner;
+use App\Models\User;
 
-class OwnerSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,17 +14,17 @@ class OwnerSeeder extends Seeder
     public function run(): void
     {
         //
-        Owner::factory()
+        User::factory()
             ->count(50)
             ->hasToDo(5)
             ->create();
 
-        Owner::factory()
+        User::factory()
             ->count(20)
             ->hasToDo(8)
             ->create();
         
-        Owner::factory()
+        User::factory()
             ->count(15)
             ->hasToDo(12)
             ->create();

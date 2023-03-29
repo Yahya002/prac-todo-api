@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('to_dos', function (Blueprint $table) {
             $table->id();
-            $table->integer('owner_id');
+            $table->integer('user_id');
             $table->text('task_text');
             $table->string('due_at')->nullable();
             $table->boolean('completed')->default(0);

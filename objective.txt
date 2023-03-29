@@ -1,0 +1,38 @@
+deadline: 15-3-23
+
+objective:
+- user:
+   - id
+   - name
+   - slug
+   - email
+   - password
+   - task collection
+- task:
+   - id
+   - user id
+   - description
+   - date (start/due)
+   - completion
+
+{authenticated}
+api/user/user-slug
+- returns the user info except password.
+
+api/user/tasks
+- returns list of user's tasks, ordered by due dates, and those that don't have due date are ordered in created time.
+
+api/user/tasks/taskid (or hash)
+- displays task with all related info
+
+api/user/tasks/add
+- create task provided the request has a description, "due date" is optional, completion is defaulted to 0.
+
+api/user/tasks/taskid/edit
+- change description or due date.
+
+api/user/tasks/taskid/complete
+- either set completion to 1
+
+api/user/tasks/taskid/clear
+- delete task
