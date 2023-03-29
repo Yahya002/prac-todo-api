@@ -9,7 +9,9 @@ class ToDo extends Model
 {
     use HasFactory;
 
-    public function owner(){
-        return $this->belongsTo(Owner::class);
+    protected $fillable = ['user_id', 'task_text', 'due_at', 'completed'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

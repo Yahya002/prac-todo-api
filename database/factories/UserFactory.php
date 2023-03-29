@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'name' => $name,
             'slug' => $slug,
             'email' => fake()->unique()->safeEmail(),
+            'password' => fake()->password(),
         ];
     }
 

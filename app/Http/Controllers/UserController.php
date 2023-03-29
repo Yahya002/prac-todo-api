@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
-use App\Http\Resources\ToDoResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\ToDo;
 
 class UserController extends Controller
 {
@@ -21,8 +20,10 @@ class UserController extends Controller
 
     public function showList(int $userId)
     {
-        $user = User::findOrFail($userId);
-        return new UserResource($user->loadMissing('todo'));
+        $user = Auth::user(User::findOrFail($userId));
+        if ($user->tokenCan('read')){ // false flags
+            return new UserResource($user->loadMissing('todo')); // false flag
+        }
     }
 
     public function update(Request $request, string $id)

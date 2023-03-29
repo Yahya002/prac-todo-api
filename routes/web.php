@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/getToken', function () {
+Route::get('/csrf', function () {
+    return csrf_token();
+});
+
+Route::post('/getToken', function (Request $request) {
     if (Auth::attempt([ // this checks whether a user with these credentials exists in DB
-        'slug' => 'adell-jenkins',
-        'email' => 'wrohan@example.com',
+        'email' => $request['email'],
+        'password' => $request['password'],
     ])){
-        $user = User::where('slug', 'adell-jenkins');
+        $user = User::where('email', $request['email']);
     }
-    $token = $user->createToken('basic-token', ['Read']); // this function only works on valid users (authenticable)
+    else{
+        $user = new User([
+            'slug' => $request['slug'],
+            'name' => (explode('-', $request['slug'])[0] . ' ' . explode('-' ,$request['slug'])[1]),
+            'email' => $request['email'],
+            'password' => $request['password'],
+        ]);
+        $user->save();
+    }
+
+    $token = $user->createToken('user-token', ['create', 'read', 'update', 'delete']); // this function only works on valid users (authenticable)
     
     return $token;
 });
